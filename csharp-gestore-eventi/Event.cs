@@ -80,14 +80,14 @@ namespace csharp_gestore_eventi
         //METODI
 
         //prenotare posti
-        public void ReserveSeat(int seat)
+        public void ReserveSeat(int seat, DateTime date)
         {
            
-            if (this.date <= DateTime.Now) 
+            if (date <= DateTime.Now) 
             {
                 throw new ArgumentException("L'evento è già passato");
             }
-            else if (this.reservedSeats + seat >= this.maxCapacity)
+            else if (reservedSeats + seat > this.maxCapacity)
             {
                 throw new ArgumentException("Non ci sono abbastanza posti disponibili");
 
