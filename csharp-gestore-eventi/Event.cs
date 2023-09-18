@@ -82,8 +82,8 @@ namespace csharp_gestore_eventi
         //prenotare posti
         public void ReserveSeat(int seat)
         {
-            DateTime now = DateTime.Now;
-            if (this.date <= now) 
+           
+            if (this.date <= DateTime.Now) 
             {
                 throw new ArgumentException("L'evento è già passato");
             }

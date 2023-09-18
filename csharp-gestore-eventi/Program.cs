@@ -12,7 +12,10 @@ namespace csharp_gestore_eventi
             string newTitle = Console.ReadLine();
 
             Console.WriteLine("Inserisci la data del tuo evento (gg/mm/yyyy):");
-            DateTime newDate = DateTime.Parse(Console.ReadLine());
+            string date = Console.ReadLine();
+
+            CultureInfo provider = new CultureInfo("it-IT");
+            DateTime newDate = DateTime.ParseExact(date, "dd/MM/yyyy", provider);
  
             Console.WriteLine("Inserisci la capienza massima del tuo evento:");
             int newCapacity = int.Parse(Console.ReadLine());
