@@ -11,15 +11,15 @@ namespace csharp_gestore_eventi
         //ATTRIBUTI
         public string Title { get; set; }
         public DateTime Date { get; set; }
-        public int MaxCapacity { get; set; }
-        public int ReservedSeats { get; set; }
+        public int MaxCapacity { get; }
+        public int ReservedSeats { get; }
 
         //COSTRUTTORE
 
         public Event(string title, DateTime date, int maxCapacity) {
-            this.Title = title;
-            this.Date = date;
-            this.MaxCapacity = maxCapacity;
+            SetTitle(title);
+            SetDate(date);
+            SetMaxCapacity(maxCapacity);
             this.ReservedSeats = 0;
         }
 
@@ -74,7 +74,7 @@ namespace csharp_gestore_eventi
         public int CancelSeat(int seat, DateTime date)
         {
             DateTime now = DateTime.Now;
-            if (date < now ^ ReservedSeats - seat < ReservedSeats)
+            if (date < now ^ ReservedSeats - seat < Reser)
             {
                 throw new ArgumentException("L'evento è già passato o non puoi cancellare più posti rispetto a quelli prenotati");
             }
