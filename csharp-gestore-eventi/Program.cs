@@ -99,6 +99,13 @@ namespace csharp_gestore_eventi
                 }
             }
 
+            Console.WriteLine($"Numero di eventi in programma: {programEvent.Events.Count()}");
+            programEvent.PrintProgram();
+            Console.WriteLine("Inserisci una data per visualizzare gli eventi di quel giorno:");
+            DateTime searchDate = DateTime.Parse(Console.ReadLine());
+            List<Event> eventsByDate = programEvent.SearchByDate(searchDate);
+
+            ProgramEvent.PrintList(eventsByDate);
            
         }
     }
