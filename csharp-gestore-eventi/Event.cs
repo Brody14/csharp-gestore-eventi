@@ -83,7 +83,7 @@ namespace csharp_gestore_eventi
         public void ReserveSeat(int seat)
         {
             DateTime now = DateTime.Now;
-            if (date <= now) 
+            if (this.date <= now) 
             {
                 throw new ArgumentException("L'evento è già passato");
             }
@@ -97,7 +97,7 @@ namespace csharp_gestore_eventi
         }
 
         //cancellare posti
-        public int CancelSeat(int seat)
+        public void CancelSeat(int seat)
         {
             DateTime now = DateTime.Now;
             if (date < now ) 
@@ -109,7 +109,8 @@ namespace csharp_gestore_eventi
                 throw new ArgumentException("Non puoi cancellare più posti rispetto a quelli prenotati");
 
             }
-            return reservedSeats - seat;
+
+            this.reservedSeats -= seat;
         }
 
         //stampa data formattata e titolo
