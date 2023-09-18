@@ -16,10 +16,10 @@ namespace csharp_gestore_eventi
 
             Event newEvent = new Event(newTitle, newDate, newCapacity);
 
-            Console.WriteLine("Vuoi riservare dei posti? S/N");
+            Console.WriteLine("Vuoi riservare dei posti? s/n");
             string answer = Console.ReadLine();
 
-            
+           
 
 
         }

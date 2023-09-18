@@ -85,11 +85,11 @@ namespace csharp_gestore_eventi
             DateTime now = DateTime.Now;
             if (date <= now) 
             {
-                throw new ArgumentException("L'evento è già passato o non ci sono abbastanza posti disponibili");
+                throw new ArgumentException("L'evento è già passato");
             }
             else if (this.reservedSeats + seat >= this.maxCapacity)
             {
-                throw new ArgumentException("L'evento è già passato o non ci sono abbastanza posti disponibili");
+                throw new ArgumentException("Non ci sono abbastanza posti disponibili");
 
             }
 
@@ -97,16 +97,16 @@ namespace csharp_gestore_eventi
         }
 
         //cancellare posti
-        public int CancelSeat(int seat, DateTime date)
+        public int CancelSeat(int seat)
         {
             DateTime now = DateTime.Now;
             if (date < now ) 
             {
-                throw new ArgumentException("L'evento è già passato o non puoi cancellare più posti rispetto a quelli prenotati");
+                throw new ArgumentException("L'evento è già passato");
             }
             else if (reservedSeats - seat < reservedSeats)
             {
-                throw new ArgumentException("L'evento è già passato o non puoi cancellare più posti rispetto a quelli prenotati");
+                throw new ArgumentException("Non puoi cancellare più posti rispetto a quelli prenotati");
 
             }
             return reservedSeats - seat;
