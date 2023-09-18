@@ -30,7 +30,7 @@ namespace csharp_gestore_eventi
                 Console.WriteLine("Numero di posti da riservare:");
                 int newReservedSeats = int.Parse(Console.ReadLine());
                 newEvent.ReserveSeat(newReservedSeats, newDate);
-                Console.Write($"Numero di posti prenotati: {newReservedSeats}, Numero di posti disponibili: {newCapacity}");
+                Console.Write($"Numero di posti prenotati: {newReservedSeats}, Numero di posti disponibili: {newCapacity - newReservedSeats}");
             }
             else
             {

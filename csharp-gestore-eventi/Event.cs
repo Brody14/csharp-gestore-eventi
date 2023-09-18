@@ -47,34 +47,36 @@ namespace csharp_gestore_eventi
         //SETTER
 
         //evitare che il titolo sia una stringa vuota
-        public string SetTitle(string title)
+        public void SetTitle(string title)
         {
             if(title == "")
             {
                 throw new ArgumentException("Il titolo non può essere vuoto");
             }
-            return title;
+
+            this.title = title;
         }
 
         //evitare che la data sia nel passato
-        public DateTime SetDate(DateTime date)
+        public void SetDate(DateTime date)
         {
             DateTime now = DateTime.Now;
             if(date < now)
             {
                 throw new ArgumentException("La data dell'evento non può essere nel passato");
             }
-            return date;
+
+            this.date = date;
         }
 
         //evitare che i posti massimi siano negativi
-        private int SetMaxCapacity(int maxCapacity)
+        private void SetMaxCapacity(int maxCapacity)
         {
             if (maxCapacity < 0)
             {
                 throw new ArgumentException("La capienza massina non può avere un valore negativo");
             }
-            return maxCapacity;
+            this.maxCapacity = maxCapacity;
         }
 
         //METODI
@@ -87,7 +89,7 @@ namespace csharp_gestore_eventi
             {
                 throw new ArgumentException("L'evento è già passato");
             }
-            else if (reservedSeats + seat > this.maxCapacity)
+            else if (this.reservedSeats + seat > this.maxCapacity)
             {
                 throw new ArgumentException("Non ci sono abbastanza posti disponibili");
 
