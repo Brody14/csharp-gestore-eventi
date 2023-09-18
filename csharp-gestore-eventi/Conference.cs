@@ -33,18 +33,20 @@ namespace csharp_gestore_eventi
             {
                 throw new ArgumentException("Il prezzo non può essere inferiore a 0 euro");
             }
+
+            this.Price = price;
         }
 
         //METODI
 
-        public string FormatPrice(double price)
+        public string FormatPrice()
         {
-            return price.ToString("0.00") + "euro";
+            return this.Price.ToString("0.00");
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()} -  {this.Speaker} - {FormatPrice(this.Price)}";
+            return $"{base.ToString()} -  {this.Speaker} - {FormatPrice()} euro";
         }
     }
 }
