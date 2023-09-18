@@ -118,7 +118,34 @@ namespace csharp_gestore_eventi
                 Console.Write($"Non ci sono eventi per il giorno {searchDate}");
             }
 
-            programEvent.EmptyList();
+            //programEvent.EmptyList();
+
+            try
+            {
+                Console.WriteLine();
+                Console.WriteLine("Aggiugni anche una conferenza!");
+                Console.Write("Inserisci il titolo della conferenza:");
+                string confTitle = Console.ReadLine();
+                Console.Write("Inserisci la data della conferenza:");
+                DateTime confDate = DateTime.Parse(Console.ReadLine());
+                Console.Write("Inserisci la capienza massima della conferenza:");
+                int confCapacity = int.Parse(Console.ReadLine());
+                Console.Write("Inserisci il nome del relatore:");
+                string speaker = Console.ReadLine();
+                Console.Write("Inserisci il prezzo:");
+                double price = double.Parse(Console.ReadLine());
+
+                Conference conf = new Conference(speaker, price, confTitle, confDate, confCapacity);
+
+                programEvent.Events.Add(conf);
+                Console.WriteLine();
+                Console.Write("Ecco il programma degli eventi, comprese le conferenze:");
+                programEvent.PrintProgram();
+            }catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
            
         }
     }
