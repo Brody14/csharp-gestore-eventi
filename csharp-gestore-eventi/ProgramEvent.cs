@@ -46,7 +46,28 @@ namespace csharp_gestore_eventi
         {
             foreach(Event e in list)
             {
-                Console.WriteLine($"Data Evento: {e.GetDate().ToString()}, Titolo Evento: {e.GetTitle()}, Posti prenotati: {e.GetReservedSeats()}, Capacità Massima: {e.GetMaxCapacity()}");
+                Console.WriteLine($"{e.ToString()}, Posti prenotati: {e.GetReservedSeats()}, Capacità Massima: {e.GetMaxCapacity()}");
+            }
+        }
+
+        //totale eventi presenti 
+        public int EventsCount()
+        {
+            return Events.Count;
+        }
+
+        //svuotare la lista
+        public void EmptyList()
+        {
+            Events.Clear();
+        }
+
+        public void PrintProgram()
+        {
+            Console.WriteLine($"Titolo Programma: {this.Title}\n\t");
+            foreach (Event e in Events)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
     }

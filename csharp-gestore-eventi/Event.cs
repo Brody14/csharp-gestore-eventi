@@ -119,7 +119,7 @@ namespace csharp_gestore_eventi
         //stampa data formattata e titolo
         public override string ToString()
         {
-            return $"{date.ToString("dd/MM/yyyy")} {title}";
+            return $"{date.ToString("dd/MM/yyyy")} - {title}";
         }
 
     }
