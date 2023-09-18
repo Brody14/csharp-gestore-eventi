@@ -63,10 +63,10 @@ namespace csharp_gestore_eventi
 
             //}
 
-            Console.WriteLine("Inserisci il titolo del programma di eventi:");
+            Console.Write("Inserisci il titolo del programma di eventi:");
             string title = Console.ReadLine();
 
-            Console.WriteLine("Quanti eventi vuoi aggiungere?");
+            Console.Write("Quanti eventi vuoi aggiungere?");
             int numberOfEvent = int.Parse(Console.ReadLine());
 
             ProgramEvent programEvent = new ProgramEvent(title);
@@ -77,16 +77,17 @@ namespace csharp_gestore_eventi
             {
                 try
                 {
-                    Console.WriteLine($"Inserisci il titolo del {count + 1} evento:");
+                    Console.WriteLine();
+                    Console.Write($"Inserisci il titolo del {count + 1} evento:");
                     string newTitle = Console.ReadLine();
 
-                    Console.WriteLine($"Inserisci la data del {count + 1} evento (gg/mm/yyyy):");
+                    Console.Write($"Inserisci la data del {count + 1} evento (gg/mm/yyyy):");
                     string date = Console.ReadLine();
 
                     CultureInfo provider = new CultureInfo("it-IT");
                     DateTime newDate = DateTime.ParseExact(date, "dd/MM/yyyy", provider);
 
-                    Console.WriteLine($"Inserisci la capienza massima del {count + 1} evento:");
+                    Console.Write($"Inserisci la capienza massima del {count + 1} evento:");
                     int newCapacity = int.Parse(Console.ReadLine());
 
                     Event newEvent = new Event(newTitle, newDate, newCapacity);
@@ -99,13 +100,25 @@ namespace csharp_gestore_eventi
                 }
             }
 
+            Console.WriteLine();
             Console.WriteLine($"Numero di eventi in programma: {programEvent.Events.Count()}");
             programEvent.PrintProgram();
-            Console.WriteLine("Inserisci una data per visualizzare gli eventi di quel giorno:");
+
+            Console.WriteLine();
+            Console.Write("Inserisci una data per visualizzare gli eventi di quel giorno:");
             DateTime searchDate = DateTime.Parse(Console.ReadLine());
             List<Event> eventsByDate = programEvent.SearchByDate(searchDate);
 
-            ProgramEvent.PrintList(eventsByDate);
+            if(eventsByDate.Count > 0)
+            {
+                ProgramEvent.PrintList(eventsByDate);
+            }
+            else
+            {
+                Console.Write($"Non ci sono eventi per il giorno {searchDate}");
+            }
+
+            programEvent.EmptyList();
            
         }
     }

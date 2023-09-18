@@ -64,10 +64,10 @@ namespace csharp_gestore_eventi
 
         public void PrintProgram()
         {
-            Console.WriteLine($"Titolo Programma: {this.Title}\n\t");
+            Console.Write($"Titolo Programma: {this.Title}\n");
             foreach (Event e in Events)
             {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine($"\t{e.ToString()}");
             }
         }
     }
