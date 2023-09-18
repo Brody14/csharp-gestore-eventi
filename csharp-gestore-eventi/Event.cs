@@ -60,8 +60,8 @@ namespace csharp_gestore_eventi
         //evitare che la data sia nel passato
         public void SetDate(DateTime date)
         {
-            DateTime now = DateTime.Now;
-            if(date < now)
+
+            if(date <= DateTime.Now)
             {
                 throw new ArgumentException("La data dell'evento non può essere nel passato");
             }
@@ -84,8 +84,9 @@ namespace csharp_gestore_eventi
         //prenotare posti
         public void ReserveSeat(int seat, DateTime date)
         {
-           
-            if (date <= DateTime.Now) 
+            DateTime now = DateTime.Now;
+
+            if (date <= now) 
             {
                 throw new ArgumentException("L'evento è già passato");
             }
@@ -106,7 +107,7 @@ namespace csharp_gestore_eventi
             {
                 throw new ArgumentException("L'evento è già passato");
             }
-            else if (reservedSeats - seat < reservedSeats)
+            else if (seat > this.reservedSeats)
             {
                 throw new ArgumentException("Non puoi cancellare più posti rispetto a quelli prenotati");
 

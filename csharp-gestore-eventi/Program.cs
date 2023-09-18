@@ -25,18 +25,44 @@ namespace csharp_gestore_eventi
             Console.WriteLine("Vuoi riservare dei posti? s/n");
             string answer = Console.ReadLine();
 
+            int newReservedSeats = 0;
+
             if (answer == "s")
             {
                 Console.WriteLine("Numero di posti da riservare:");
-                int newReservedSeats = int.Parse(Console.ReadLine());
+                newReservedSeats = int.Parse(Console.ReadLine());
                 newEvent.ReserveSeat(newReservedSeats, newDate);
-                Console.Write($"Numero di posti prenotati: {newReservedSeats}, Numero di posti disponibili: {newCapacity - newReservedSeats}");
+                Console.WriteLine($"Numero di posti prenotati: {newEvent.GetReservedSeats()}, Numero di posti disponibili: {newEvent.GetMaxCapacity() - newEvent.GetReservedSeats()}");
             }
             else
             {
-                Console.Write($"Numero di posti disponibili: {newCapacity}");
+                Console.WriteLine($"Numero di posti disponibili: {newEvent.GetMaxCapacity()}");
             }
 
+            bool cancel = true;
+
+            while( cancel == true )
+            {
+                Console.WriteLine("Vuoi disdire dei posti? s/n");
+                string choice = Console.ReadLine();
+
+                if(choice == "s")
+                {
+                    Console.WriteLine("Quanti posti vuoi disdire?");
+                    int cancelSeat = int.Parse(Console.ReadLine());
+                    newEvent.CancelSeat(cancelSeat);
+                    Console.Write($"Numero di posti disponibili: {newEvent.GetMaxCapacity() - newEvent.GetReservedSeats()}, Numero di posti prenotatati: {newEvent.GetReservedSeats()} ");
+
+                    ;
+                }
+                else
+                {
+                    cancel = false;
+                    Console.WriteLine("ok");
+                }
+               
+            }
+      
 
         }
     }
