@@ -9,10 +9,10 @@ namespace csharp_gestore_eventi
     public class Event
     {
         //ATTRIBUTI
-        public string Title { get; set; }
-        public DateTime Date { get; set; }
-        public int MaxCapacity { get; }
-        public int ReservedSeats { get; }
+        private string title;
+        private DateTime date;
+        private int maxCapacity;
+        private int reservedSeats;
 
         //COSTRUTTORE
 
@@ -20,9 +20,30 @@ namespace csharp_gestore_eventi
             SetTitle(title);
             SetDate(date);
             SetMaxCapacity(maxCapacity);
-            this.ReservedSeats = 0;
+            this.reservedSeats = 0;
         }
 
+        //GETTER
+
+        public string GetTitle()
+        {
+            return this.title;
+        }
+
+        public DateTime GetDate() 
+        { 
+            return this.date; 
+        }
+
+        public int GetMaxCapacity()
+        {
+            return this.maxCapacity;
+        }
+
+        public int GetReservedSeats()
+        {
+            return this.reservedSeats;
+        }
         //SETTER
 
         //evitare che il titolo sia una stringa vuota
@@ -59,32 +80,42 @@ namespace csharp_gestore_eventi
         //METODI
 
         //prenotare posti
-        public int ReserveSeat(int seat, DateTime date)
+        public void ReserveSeat(int seat)
         {
             DateTime now = DateTime.Now;
-            if (date < now ^ ReservedSeats + seat > MaxCapacity)
+            if (date <= now) 
             {
                 throw new ArgumentException("L'evento è già passato o non ci sono abbastanza posti disponibili");
             }
-            
-            return ReservedSeats + seat;
+            else if (this.reservedSeats + seat >= this.maxCapacity)
+            {
+                throw new ArgumentException("L'evento è già passato o non ci sono abbastanza posti disponibili");
+
+            }
+
+           this.reservedSeats += seat;
         }
 
         //cancellare posti
         public int CancelSeat(int seat, DateTime date)
         {
             DateTime now = DateTime.Now;
-            if (date < now ^ ReservedSeats - seat < Reser)
+            if (date < now ) 
             {
                 throw new ArgumentException("L'evento è già passato o non puoi cancellare più posti rispetto a quelli prenotati");
             }
-            return ReservedSeats - seat;
+            else if (reservedSeats - seat < reservedSeats)
+            {
+                throw new ArgumentException("L'evento è già passato o non puoi cancellare più posti rispetto a quelli prenotati");
+
+            }
+            return reservedSeats - seat;
         }
 
         //stampa data formattata e titolo
         public override string ToString()
         {
-            return $"{Date.ToString("dd/MM/yyyy")} {Title}";
+            return $"{date.ToString("dd/MM/yyyy")} {title}";
         }
 
     }
